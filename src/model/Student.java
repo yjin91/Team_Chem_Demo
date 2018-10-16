@@ -13,8 +13,8 @@ public class Student {
 	private int greVerb;
 	private int greQuan;
 	private int greAW;
-	private int inResearch;
-	private int inWork;
+	private String inResearch;
+	private String inWork;
 	
 	public Student () {
 		this.studentID = 0;
@@ -28,8 +28,8 @@ public class Student {
 		this.greVerb = 0;
 		this.greQuan = 0;
 		this.greAW = 0;
-		this.inResearch = 0;
-		this.inWork = 0;
+		this.inResearch = "";
+		this.inWork = "";
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class Student {
 	 */
 	
 	public Student(int studentID, String fName, String mName, String lName, String ethnic, String gender, String email,
-			String nationality, int greVerb, int greQuan, int greAW, int inResearch, int inWork) {
+			String nationality, int greVerb, int greQuan, int greAW, String inResearch, String inWork) {
 		this.studentID = studentID;
 		this.fName = fName;
 		this.mName = mName;
@@ -222,28 +222,28 @@ public class Student {
 	/**
 	 * @return the inResearch
 	 */
-	public int getInResearch() {
+	public String getInResearch() {
 		return inResearch;
 	}
 
 	/**
 	 * @param inResearch the inResearch to set
 	 */
-	public void setInResearch(int inResearch) {
+	public void setInResearch(String inResearch) {
 		this.inResearch = inResearch;
 	}
 
 	/**
 	 * @return the inWork
 	 */
-	public int getInWork() {
+	public String getInWork() {
 		return inWork;
 	}
 
 	/**
 	 * @param inWork the inWork to set
 	 */
-	public void setInWork(int inWork) {
+	public void setInWork(String inWork) {
 		this.inWork = inWork;
 	}
 

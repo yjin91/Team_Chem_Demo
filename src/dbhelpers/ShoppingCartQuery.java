@@ -86,7 +86,9 @@ public class ShoppingCartQuery {
 			shoppingcart.setImage(this.results.getString("image"));
 			shoppingcart.setPrice(this.results.getDouble("price"));
 			shoppingcart.setQuantity(this.results.getInt("quantity"));
-			
+			div += "<table class='student_table'>";
+			div += "<tr>";
+			div += "<td>";
 			div += "<div class='product-squares'>";
 			div += "<div class='product-block'>";
 			div += "<img src='./_img/" + shoppingcart.getImage() + "'>";
@@ -104,6 +106,9 @@ public class ShoppingCartQuery {
 			div += "</div>";
 			div += "</div>";
 			div += "</div>";
+			div += "</tr>";
+			div += "</td>";
+			div += "</table>";
 			}
 			
 		} catch (SQLException e) {

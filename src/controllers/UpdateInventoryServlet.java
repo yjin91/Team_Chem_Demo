@@ -70,6 +70,7 @@ public class UpdateInventoryServlet extends HttpServlet {
 			String name = product.getName();
 			String image = product.getImage();
 			Double price = product.getPrice();
+			
 			String username = (String) session.getAttribute("username");
 			
 			Shoppingcart shoppingcart = new Shoppingcart();

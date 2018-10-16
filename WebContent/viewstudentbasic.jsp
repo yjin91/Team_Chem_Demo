@@ -30,7 +30,7 @@
 			<div class="sidebar">
 				<h3>View Data Tables</h3>
 
-				<a href="#outerwear">Student Basic Information</a>
+				<a href="#student Basic Information">Student Basic Information</a>
 				<a href="#backpack">Faculty Basic Information</a>
 				<a href="#hats">Staff</a>
 				<a href="">Department</a>
@@ -40,7 +40,7 @@
 				<a href="viewsc" class="view-cart">Edit</a>
 				<h2>Student Basic Information</h2>
 
-				<div class="product-squares" id="outerwear">
+				<div class="product-browse">
 				
 				<%= div %>
 

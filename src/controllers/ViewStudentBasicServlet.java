@@ -10,25 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dbhelpers.UserUpdateQuery;
-import model.User;
+import dbhelpers.ViewStudentBasicQuery;
 
 /**
- * Servlet implementation class CheckUserServlet
+ * Servlet implementation class ViewStudentBasicServlet
  */
 @WebServlet(
-		description = "this controller is used to validate user's login credentials", 
+		description = "this controller is used to display student basic information table",
 		urlPatterns = { 
-				"/CheckUserServlet", 
-				"/login"
+				"/ViewStudentBasicServlet", 
+				"/viewstudentbasic" 
 		})
-public class CheckUserServlet extends HttpServlet {
+public class ViewStudentBasicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckUserServlet() {
+    public ViewStudentBasicServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +37,7 @@ public class CheckUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.doPost(request, response);
+		doPost(request,response);
 	}
 
 	/**
@@ -46,37 +45,22 @@ public class CheckUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		HttpSession session = request.getSession();
 		
+		ViewStudentBasicQuery vsb = new ViewStudentBasicQuery("chemDB", "root", "123456");
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		vsb.doRead();
+		String div = vsb.getHTMLTable();
 		
-		//save the username as a session attribute for shopping cart use.
+		String username = (String) session.getAttribute("username");
+		request.setAttribute("username", username);
 		
-		session.setAttribute("username", username);
+		request.setAttribute("div", div);
+		String url= "/viewstudentbasic.jsp";
 		
-		//set up user object
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		
-		//set up userdbhelper object
-		UserUpdateQuery up = new UserUpdateQuery("chemDB", "root", "123456");
-		
-		user = up.validateUser(username, password);
-		
-		String url = "";
-		
-		if (user != null) {
-			 url = "viewstudentbasic";
-		} else if (user == null) {
-			 url = "/loginerror.jsp";
-		}
-		
-	    RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-	    dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		dispatcher.forward(request, response);
+	
 	}
 
 }
