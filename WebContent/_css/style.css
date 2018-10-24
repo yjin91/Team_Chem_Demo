@@ -191,15 +191,18 @@ form p {
 }
 
 form input {
-width: 60%;
-    margin: 0 auto 2%;
+    width: 40%;
+    margin: auto;
     display: block;
-    border: 1px solid #555 !important;
-    border-radius: 4px;
-    padding: 15px 5px !important;
+    padding: 5px 5px 5px 5px;
     font-size: 16px;
     font-family: open sans;
   }
+
+input.icon {
+	margin:auto;
+}
+  
 
 form {
     margin-top: 2%;
@@ -448,6 +451,12 @@ The css code for student table
    order: 1;
    width: 100%;
 }
+
+.notDisplay {
+	display: none;
+}
+
+
 
 /**
 

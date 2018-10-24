@@ -10,24 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dbhelpers.ShoppingCartQuery;
+import dbhelpers.ViewStudentBasicQuery;
+import model.Student;
 
 /**
- * Servlet implementation class ViewShoppingCartServlet
+ * Servlet implementation class UpdateStudentBasicFormServlet
  */
-@WebServlet(
-		description = "this controller is used to display all the product in the shopping cart", 
-		urlPatterns = { 
-				"/ViewShoppingCartServlet", 
-				"/viewsc"
-		})
-public class ViewShoppingCartServlet extends HttpServlet {
+@WebServlet({ "/UpdateStudentBasicFormServlet", "/updatesbform" })
+public class UpdateStudentBasicFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewShoppingCartServlet() {
+    public UpdateStudentBasicFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,35 +33,31 @@ public class ViewShoppingCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request,response);
+		this.doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-        HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        int carttotal = 0;
-        
-		ShoppingCartQuery sc = new ShoppingCartQuery("dbfinal", "root", "123456");
+		HttpSession session = request.getSession();
 		
-		sc.doReadSC(username);
-		String div = sc.getHTMLTable();
-		request.setAttribute("div", div);
+		int studentID = Integer.parseInt(request.getParameter("studentID"));
 		
-		ShoppingCartQuery sc1 = new ShoppingCartQuery("dbfinal", "root", "123456");
+		ViewStudentBasicQuery vsb = new ViewStudentBasicQuery("chemDB", "root", "123456");
 		
-		carttotal = sc1.caltotal(username);
+		Student student = vsb.doReadOne(studentID);
 		
-		request.setAttribute("carttotal", carttotal);
+		request.setAttribute("student", student);
 		
+		String username = (String) session.getAttribute("username");
+		request.setAttribute("username", username);
 		
-		String url = "/shoppingcart.jsp";
+		String url = "/updatestudentbasicform.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+		
 	}
 
 }

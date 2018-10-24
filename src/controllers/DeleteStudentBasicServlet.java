@@ -8,26 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dbhelpers.ShoppingCartQuery;
-import dbhelpers.ViewProductQuery;
+import dbhelpers.ViewStudentBasicQuery;
 
 /**
- * Servlet implementation class UpdateShoppingCartServlet
+ * Servlet implementation class DeleteStudentBasicServlet
  */
-@WebServlet(
-		description = "this controller is used to update shopping cart and inventory when user click remove button", 
-		urlPatterns = { 
-				"/UpdateShoppingCartServlet", 
-				"/updatesc"
-		})
-public class UpdateShoppingCartServlet extends HttpServlet {
+@WebServlet({ "/DeleteStudentBasicServlet", "/deleteSB" })
+public class DeleteStudentBasicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateShoppingCartServlet() {
+    public DeleteStudentBasicServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,28 +40,20 @@ public class UpdateShoppingCartServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
 		
-		String url = "viewsc";
-		int quantity = 0;
-		String SKU = request.getParameter("SKU");
-		int scid = Integer.parseInt(request.getParameter("scid"));
-		int number = Integer.parseInt(request.getParameter("number"));
+		int studentID = Integer.parseInt(request.getParameter("studentID"));
 		
-		ShoppingCartQuery sc = new ShoppingCartQuery("dbfinal", "root", "123456"); 
-		sc.doDeleteSC(scid);
+		String username = (String) session.getAttribute("username");
+		request.setAttribute("username", username);
 		
-		ViewProductQuery vp = new ViewProductQuery("dbfinal", "root", "123456");
+		ViewStudentBasicQuery vsb = new ViewStudentBasicQuery("chemDB", "root", "123456");
+		vsb.doDeleteStudent(studentID);
 		
-		int inventorynumber = vp.getInventoryNumber(SKU);
-		quantity = inventorynumber + number; 
-		
-		vp.updateInventory(SKU, quantity);
+		String url = "/updatePage";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-	
-		
-	
 	}
 
 }

@@ -10,24 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dbhelpers.ViewProductQuery;
+import dbhelpers.ViewStudentBasicQuery;
 
 /**
- * Servlet implementation class ViewProductServlet
+ * Servlet implementation class UpdateStudentBasicServlet
  */
-@WebServlet(
-		description = "this controller is used to display product", 
-		urlPatterns = { 
-				"/ViewProductServlet", 
-				"/viewproduct"
-		})
-public class ViewProductServlet extends HttpServlet {
+@WebServlet({ "/UpdateStudentBasicServlet", "/updatePage" })
+public class UpdateStudentBasicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewProductServlet() {
+    public UpdateStudentBasicServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,17 +42,16 @@ public class ViewProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		ViewProductQuery vp = new ViewProductQuery("dbfinal", "root", "123456");
+		ViewStudentBasicQuery vsb = new ViewStudentBasicQuery("chemDB", "root", "123456");
 		
-		vp.doRead();
-		String div = vp.getHTMLTable();
+		vsb.doRead();
+		String div = vsb.getNewHTMLTable();
 		
 		String username = (String) session.getAttribute("username");
 		request.setAttribute("username", username);
 		
-		
 		request.setAttribute("div", div);
-		String url = "/productbrowse.jsp";
+		String url= "/updatestudentbasic.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

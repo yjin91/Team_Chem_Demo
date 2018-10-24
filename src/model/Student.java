@@ -12,7 +12,7 @@ public class Student {
 	private String nationality; 
 	private int greVerb;
 	private int greQuan;
-	private int greAW;
+	private double greAW;
 	private String inResearch;
 	private String inWork;
 	
@@ -49,7 +49,7 @@ public class Student {
 	 */
 	
 	public Student(int studentID, String fName, String mName, String lName, String ethnic, String gender, String email,
-			String nationality, int greVerb, int greQuan, int greAW, String inResearch, String inWork) {
+			String nationality, int greVerb, int greQuan, double greAW, String inResearch, String inWork) {
 		this.studentID = studentID;
 		this.fName = fName;
 		this.mName = mName;
@@ -208,15 +208,15 @@ public class Student {
 	/**
 	 * @return the greAW
 	 */
-	public int getGreAW() {
+	public double getGreAW() {
 		return greAW;
 	}
 
 	/**
-	 * @param greAW the greAW to set
+	 * @param d the greAW to set
 	 */
-	public void setGreAW(int greAW) {
-		this.greAW = greAW;
+	public void setGreAW(double d) {
+		this.greAW = d;
 	}
 
 	/**
