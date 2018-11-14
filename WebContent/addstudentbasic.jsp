@@ -3,9 +3,8 @@
     <%@ page import="model.Student"%>
     
 <%   
-    Student student = (Student) request.getAttribute("student");
     String username = (String) request.getAttribute("username");
-%>
+%>    
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,60 +29,57 @@
 		
 				<a href="viewstudentbasic" class="continue">Return to Database</a>
 
-				<h2>Student ID: <%= student.getStudentID() %></h2>
+				<h2>Add Student Record</h2>
 				 
 				<div class='table-block'>
 				
-				<form name=updateForm action=updatebsinfo method=post >
+				<form name=addStudentBasic action=addstudent method=post >
 					      
 					   <p>Student ID:</p>
-					   <input type=text name=studentID value="<%=student.getStudentID()%>" readonly='readonly' />
+					   <input type=text name=studentID value="" />
 					   <br />
-					<p>
-					      First Name
-					</p>
-					   <input type=text name=fName value="<%=student.getfName()%>" />
+					<p>First Name</p>
+					   <input type=text name=fName value="" />
 					     <br /> 
 					<p>Middle Name:</p>
-					   <input type=text name=mName value="<%=student.getmName()%>" />
+					   <input type=text name=mName value="" />
 					     <br />
 					<p>Last Name:</p>
-					   <input type=text name=lName value="<%=student.getlName()%>" />
+					   <input type=text name=lName value="" />
 					   <br />
 					<p>Ethnic:</p>
-					   <input type=text name=ethnic value="<%=student.getEthnic()%>" />
+					   <input type=text name=ethnic value="" />
 					   <br />
 					<p>Gender:</p>
-					   <input type=text name=gender value="<%=student.getGender()%>" />
+					   <input type=text name=gender value="" />
 					   <br />
 					<p>Email:</p>
-					   <input type=text name=email value="<%=student.getEmail()%>" />
+					   <input type=text name=email value="" />
 					   <br />
 					<p>Nationality:</p>
-					   <input type=text name=nationality value="<%=student.getNationality()%>" />
+					   <input type=text name=nationality value="" />
 					   <br />
-					   
 					<p>GRE Verbal:</p>
-					   <input type=text name=greVerb value="<%=student.getGreVerb()%>" />
+					   <input type=text name=greVerb value="" />
 					   <br />
 					   
 				    <p>GRE Quantitative:</p>
-					   <input type=text name=greQuan value="<%=student.getGreQuan()%>" />
+					   <input type=text name=greQuan value="" />
 					   <br />
 					   
 					<p>GRE Analytical Writing:</p>
-					   <input type=text name=greAW value="<%=student.getGreAW()%>" />
+					   <input type=text name=greAW value="" />
 					   <br />
 					   
 					<p>Research Status:</p>
-					   <input type=text name=inResearch value="<%=student.getInResearch() %>" />
+					   <input type=text name=inResearch value="" />
 					   <br />
 					   
 					<p>Work Status:</p>
-					   <input type=text name=inWork value="<%=student.getInWork() %>" />
+					   <input type=text name=inWork value="" />
 					   <br />
 					   
-					<input class="submit-button" type=submit name=submit value="Update" />
+					<input class="submit-button" type=submit name=Add value="Add" />
 					</form>								
 				</div> 	   
 				</div>
@@ -92,7 +88,6 @@
 		</div>
 
 </div>
-
 
 
 </body>

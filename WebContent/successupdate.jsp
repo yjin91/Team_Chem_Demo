@@ -4,24 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>UGA Chem Database Not Enough Inventory</title>
+<title>Green & Jin Confirmation</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/_css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/_css/bootstrap.css" type="text/css">
-
 </head>
 <body>
+
 <div class="container logo regconf">
 		<img src="./_img/finallogo.png">
 
-		<h2>Error</h2>
-		<p>Please enter smaller qty number</p>
-		
+		<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
 
-		<div class="conf-btn">
-		<a href="viewproduct" class="view">Continue Shopping</a>
-				<a href="mailto:skgreen9@gmail.com" class="contact">Contact</a>
+		<h2>Updated Successfully</h2>
+
+		<div class="conf-btn complete-order">
+		<a href="viewstudentbasic" class="view">Return to Database</a>
+				<a href="" class="contact">Contact</a>
 			</div>
-
 	</div>
+
+
 </body>
 </html>

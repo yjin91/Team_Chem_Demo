@@ -37,9 +37,9 @@
 			</div>
 
 			<div class="main-browse">
-				<a href="updatePage" class="view-cart">Edit</a>
-				<a href="addStudentPage" class="add-cart">Add</a>
-				<h2>Student Basic Information</h2>
+				<a href="" class="view-cart">Edit</a>
+				<a href="" class="add-cart">Add</a>
+				<h2>Faculty Basic Information</h2>
 
 				<div class="product-browse">
 				

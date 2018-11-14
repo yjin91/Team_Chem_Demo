@@ -256,8 +256,37 @@ public class ViewStudentBasicQuery {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
+	}
+	
+	public void addStudent(Student student) {
 		
+		String query = "insert into chemDB.studentbasic (studentID, fName, mName, lName, ethnic, gender, email, nationality, greVerb, greQuan, greAW, inResearch, inWork) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			
+			ps.setInt(1, student.getStudentID());
+			ps.setString(2, student.getfName());
+			ps.setString(3, student.getmName());
+			ps.setString(4, student.getlName());
+			ps.setString(5, student.getEthnic());
+			ps.setString(6, student.getGender());
+			ps.setString(7, student.getEmail());
+			ps.setString(8, student.getNationality());
+			ps.setInt(9, student.getGreVerb());
+			ps.setInt(10, student.getGreQuan());
+			ps.setDouble(11, student.getGreAW());
+			ps.setString(12, student.getInResearch());
+			ps.setString(13, student.getInWork());
+			
+			ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

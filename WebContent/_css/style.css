@@ -99,6 +99,8 @@ label.qty {
 label {
 	font-size: 16px;
     font-family: open sans;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input.quantity-input {
@@ -323,11 +325,11 @@ p.reg {
 
 a.view-cart {
     position: absolute;
-    top: 5%;
+    top: 2%;
     margin-left: 90%;
     font-size: 18px;
     color: #444;
-    width: 17%;
+    width: 12%;
 }
 
 a.view-cart::before {
@@ -337,6 +339,26 @@ a.view-cart::before {
 }
 
 a.view-cart:hover {
+  color: #777;
+  text-decoration: none;
+}
+
+a.add-cart {
+    position: absolute;
+    top: 2%;
+    margin-left: 80%;
+    font-size: 18px;
+    color: #444;
+    width: 12%;
+}
+
+a.add-cart::before {
+  content: "\f067";
+  font-family: 'FontAwesome';
+   margin-right: 10%;
+}
+
+a.add-cart:hover {
   color: #777;
   text-decoration: none;
 }
