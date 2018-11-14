@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 import model.Credential;
 import model.Faculty;
-import model.Student;
 
 public class ViewFacultyBasicQuery {
 	
@@ -47,42 +46,7 @@ public class ViewFacultyBasicQuery {
 		}
 	}
     
-    public Credential readCredential(int facultyid) {
-		
-		String query = "SELECT credential_id,  l_name, f_name, degree_type, received_date, institution, major "
-				     + "FROM chemDB.facultybasic, chemDB.facultycredential"
-				     + "WHERE chemDB.facultycredential.facultyid = chemDB.facultybasic.faculty_id"
-				     + "AND chemDB.facultycredential.facultyid = ?"
-				     + "ORDER BY received_date;";
-		
-		Credential credential = null;
-		
-		
-		try {
-			PreparedStatement ps = this.connection.prepareStatement(query);
-			
-			ps.setInt(1, facultyid);
-			
-			ResultSet results = ps.executeQuery();
-			
-			credential = new Credential(
-					results.getInt("credential_id"),
-					results.getString("l_name"),
-					results.getString("f_name"),
-					results.getString("degree_type"),
-					results.getString("received_date"),
-					results.getString("institution"),
-					results.getString("major"),
-					results.getInt("facultyid")
-					);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return credential;
-	}
+    
 	
     public String getHTMLTable() {
 		String div = "";
@@ -127,9 +91,87 @@ public class ViewFacultyBasicQuery {
 			div += "<td>" + faculty.getArrive_date() + "</td>";
 			div += "<td>" + faculty.getTenure_status() + "</td>";
 			div += "<td>";
-			div += "<form name=updateStudent action= method=post >";
-			div += "<input class='notDisplay' name='faculty_id' type='text' readonly='readonly' value='" + faculty.getFaculty_id() + "' />";
+			div += "<form name=updateStudent action=viewcredential method=post >";
+			div += "<input class='notDisplay' name='facultyid' type='text' readonly='readonly' value='" + faculty.getFaculty_id() + "' />";
 			div += "<input class='icon' type=image src='_img/information.png' />";
+			div += "</form>";
+			div += "</td>";
+			
+			}
+		}  catch (SQLException e) {
+			//TOO Autogenerate catch block
+			e.printStackTrace();
+		}
+		
+		div += "</tr>";
+		div += "</tbody>";
+		div += "</table>";
+		div += "</div>";
+		
+		return div;
+	}
+    
+     public void readCredential(int facultyid) {
+		
+		String query = "SELECT credential_id,  l_name, f_name, degree_type, received_date, institution, major, facultyid "
+				     + "FROM chemDB.facultybasic, chemDB.facultycredential "
+				     + "WHERE chemDB.facultycredential.facultyid = chemDB.facultybasic.faculty_id "
+				     + "AND chemDB.facultycredential.facultyid = ? "
+				     + "ORDER BY received_date";	
+		
+		try {
+			PreparedStatement ps = this.connection.prepareStatement(query);
+			ps.setInt(1, facultyid);
+			
+			this.results = ps.executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+    
+    public String getCredentialHTMLTable() {
+    	
+		String div = "";
+		div += "<div class='table-block'>";
+		div += "<table class='student_table'>";
+		div += "<thead>";
+		div += "<th>Credential ID</th>";
+		div += "<th>Name</th>";
+		div += "<th>Major</th>";
+		div += "<th>Degree Type</th>";
+		div += "<th>Received Date</th>";
+		div += "<th>Institution</th>";
+		div += "<th>Edit</th>";
+		div += "</tr>";
+		div += "</thead>";
+		div += "<tbody>";	
+		
+		try {
+			while(this.results.next()) {
+			Credential credential = new Credential();
+			
+			credential.setCredential_id(this.results.getInt("credential_id"));
+			credential.setF_name(this.results.getString("f_name"));
+			credential.setL_name(this.results.getString("l_name"));
+			credential.setDegree_type(this.results.getString("degree_type"));
+			credential.setReceived_date(this.results.getString("received_date"));
+			credential.setInstitution(this.results.getString("institution"));
+			credential.setFacultyid(this.results.getInt("facultyid"));
+			
+			div += "<tr>";
+			div += "<td>" + credential.getCredential_id() + "</td>";
+			div += "<td>" + credential.getL_name() + ", " + credential.getF_name() + "</td>";
+			div += "<td>" + credential.getDegree_type() + "</td>";
+			div += "<td>" + credential.getReceived_date() + "</td>";
+			div += "<td>" + credential.getInstitution() + "</td>";
+			div += "<td>" + credential.getFacultyid() + "</td>";
+			div += "<td>";
+			div += "<form name=updateStudent action= method=post >";
+			div += "<input class='notDisplay' name='facultyid' type='text' readonly='readonly' value='" + credential.getCredential_id() + "' />";
+			div += "<input class='icon' type=image src='_img/editimg.png' />";
 			div += "</form>";
 			div += "</td>";
 			
